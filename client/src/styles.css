@@ -23,9 +23,10 @@ main {
 }
 
 /* HEADER BANNER */
+
 header {
   min-height: 20vh;
-  background-color: rgb(30, 98, 246);
+  background-color: #362fd9;
   color: white;
   display: flex;
   justify-content: center;
@@ -38,7 +39,7 @@ header {
 .top-panel {
   margin: 20px auto;
   min-height: 15vh;
-  background-color: lightgrey;
+  background-color: lightgray;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,7 +47,7 @@ header {
 }
 
 .btn-panel {
-  background: rgb(30, 98, 246);
+  background: #362fd9;
   color: white;
   font-size: 17px;
   letter-spacing: 1px;
@@ -54,4 +55,57 @@ header {
   padding: 10px 20px;
   border: none;
   min-width: 20%;
+}
+
+/* TABLE STYLING */
+
+/* .main-table {
+  min-height: 50vh;
+  background-color: rgb(234, 228, 228);
+} */
+
+table {
+  /* margin-top: 20px; */
+  text-align: center;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  /* padding: 20px; */
+  border: 1px solid #ddd;
+}
+
+/* only border on the bottom of every row */
+tr {
+  border-bottom: 1px solid #ddd;
+  height: 50px;
+}
+
+tr:nth-child(even) {
+  background-color: #eeeeee;
+}
+
+tr:hover {
+  background-color: #82c3ec;
+}
+
+.col-hearts {
+  width: 5%;
+}
+
+.col-name,
+.col-desc {
+  width: 20%;
+}
+
+.col-date,
+.col-category {
+  width: 15%;
+}
+
+.col-edit,
+.col-del {
+  width: 10%;
 }
