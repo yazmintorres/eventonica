@@ -1,6 +1,6 @@
 import "./styles.css";
 import { TopPanel } from "./components/TopPanel";
-import Events from "./components/events";
+import ListEvents from "./components/ListEvents";
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       </header>
       <main>
         <TopPanel />
-        <Events />
+        <ListEvents />
       </main>
     </div>
   );
