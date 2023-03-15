@@ -1,0 +1,57 @@
+/* GLOBAL STYLING */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* 1rem = 10px */
+  font-size: 62.5%;
+}
+
+body {
+  /* 16px */
+  font-size: 1.6rem;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+main {
+  width: 90%;
+  margin: auto;
+}
+
+/* HEADER BANNER */
+header {
+  min-height: 20vh;
+  background-color: rgb(30, 98, 246);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0;
+}
+
+/* TOP PANEL */
+.top-panel {
+  margin: 20px auto;
+  min-height: 15vh;
+  background-color: lightgrey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.btn-panel {
+  background: rgb(30, 98, 246);
+  color: white;
+  font-size: 17px;
+  letter-spacing: 1px;
+  border-radius: 10px;
+  padding: 10px 20px;
+  border: none;
+  min-width: 20%;
+}
