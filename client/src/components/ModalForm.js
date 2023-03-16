@@ -1,44 +1,31 @@
 import { useEffect, useState } from "react";
 
-const ModalForm = (props) => {
-  const [event, setEvent] = useState({
-    name: "",
-    date: "",
-    category: "",
-    description: "",
+const ModalForm = ({
+  setShow,
+  onSubmitForm,
+  title,
+  name,
+  date,
+  description,
+  category,
+}) => {
+  // need to format string because it is coming from json response as "2023-03-15T07:00:00.000Z"
+  let formatDateString = date.slice(0, 10);
+
+  // NEW EVENT
+  const [newEvent, setNewEvent] = useState({
+    name,
+    date: formatDateString,
+    category,
+    description,
   });
 
-  useEffect(() => console.log(event), [event]);
-
-  // POST/ADD AN EVENT
-  const onSubmitForm = async (e) => {
-    e.preventDefault();
-    console.log(event);
-    try {
-      const body = event;
-      const postEvent = await fetch("http://localhost:8080/api/event/add", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
-      // redirect to home page after form submit
-      window.location = "/";
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
-
-  // when close on modal is clicked, do this
-  const closeOnClick = (e) => {
-    props.onClose();
-    // callback in parent
-    // props.updateDescription(e);
-  };
+  // useEffect(() => console.log(newEvent), [newEvent]);
 
   // handle Input
   const handleChange = (eventProperty) => {
     return (e) => {
-      setEvent({ ...event, [eventProperty]: e.target.value });
+      setNewEvent({ ...newEvent, [eventProperty]: e.target.value });
     };
   };
 
@@ -46,17 +33,19 @@ const ModalForm = (props) => {
     <div className="modal">
       <div className="modal-content">
         <div className="modal-header">
-          <h4 className="modal-title">{props.title}</h4>
+          <h4 className="modal-title">{title}</h4>
         </div>
         <div className="modal-body">
-          <form onSubmit={onSubmitForm}>
+          {/* we need to have two different on submit functions 
+          we can pass the post or edit function as a prop*/}
+          <form onSubmit={(e) => onSubmitForm(e, newEvent)}>
             <div className="name-form">
               <label htmlFor="name">Event Name:*</label>
               <input
                 type="text"
                 name="name"
                 id="name"
-                value={event.name}
+                value={newEvent.name}
                 onChange={handleChange("name")}
                 required
               />
@@ -67,7 +56,7 @@ const ModalForm = (props) => {
                 type="date"
                 name="date"
                 id="date"
-                value={event.date}
+                value={newEvent.date}
                 onChange={handleChange("date")}
               />
             </div>
@@ -77,7 +66,7 @@ const ModalForm = (props) => {
                 type="text"
                 name="category"
                 id="category"
-                value={event.category}
+                value={newEvent.category}
                 onChange={handleChange("category")}
               />
             </div>
@@ -88,16 +77,18 @@ const ModalForm = (props) => {
                 cols="20"
                 name="desc"
                 id="desc"
-                value={event.description}
+                value={newEvent.description}
                 onChange={handleChange("description")}
               />
             </div>
-
             <button>Submit</button>
           </form>
         </div>
         <div className="modal-footer">
-          <button onClick={closeOnClick} className=" btn btn-modal-close">
+          <button
+            onClick={() => setShow(false)}
+            className=" btn btn-modal-close"
+          >
             Close
           </button>
         </div>

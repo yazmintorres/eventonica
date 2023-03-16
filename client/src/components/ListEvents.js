@@ -1,26 +1,8 @@
 import { useState, useEffect } from "react";
 import { EventRow } from "./EventRow";
+import Moment from "react-moment";
 
-function ListEvents() {
-  //  store all events data
-  const [events, setEvents] = useState([]);
-
-  // get all events
-  const getEvents = async () => {
-    try {
-      const response = await fetch("http://localhost:8080/api/events");
-      // parses the body text as json and returns JS object
-      const jsonData = await response.json();
-      setEvents(jsonData);
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
-
-  useEffect(() => {
-    getEvents();
-  }, [setEvents]);
-
+function ListEvents({ newEvent, events, setNewEvent, setEvents }) {
   return (
     <div className="main-table">
       <table>
@@ -43,7 +25,7 @@ function ListEvents() {
               date={event.date}
               category={event.category}
               description={event.description}
-              id={event.event_id}
+              event_id={event.event_id}
               events={events}
               setEvents={setEvents}
             />
