@@ -11,6 +11,22 @@ const ModalForm = (props) => {
   useEffect(() => console.log(event), [event]);
 
   // POST/ADD AN EVENT
+  const onSubmitForm = async (e) => {
+    e.preventDefault();
+    console.log(event);
+    try {
+      const body = event;
+      const postEvent = await fetch("http://localhost:8080/api/event/add", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      // redirect to home page after form submit
+      window.location = "/";
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
 
   // when close on modal is clicked, do this
   const closeOnClick = (e) => {
@@ -33,9 +49,9 @@ const ModalForm = (props) => {
           <h4 className="modal-title">{props.title}</h4>
         </div>
         <div className="modal-body">
-          <form action="#">
+          <form onSubmit={onSubmitForm}>
             <div className="name-form">
-              <label htmlFor="name">Event Name:</label>
+              <label htmlFor="name">Event Name:*</label>
               <input
                 type="text"
                 name="name"
@@ -76,7 +92,7 @@ const ModalForm = (props) => {
                 onChange={handleChange("description")}
               />
             </div>
-            <button type="submit">Submit</button>
+            <button>Submit</button>
           </form>
         </div>
         <div className="modal-footer">

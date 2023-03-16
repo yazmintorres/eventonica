@@ -9,7 +9,11 @@ const EventRow = (props) => {
       <td className="heart">&#10084;</td>
       <td>{props.name}</td>
       <td>
-        <Moment format="MMM DD, YYYY">{props.date}</Moment>
+        {props.date ? (
+          <Moment format="MMM DD, YYYY">{props.date}</Moment>
+        ) : (
+          "TBD"
+        )}
       </td>
       <td>{props.category}</td>
       <td>{props.description}</td>

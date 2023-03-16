@@ -31,14 +31,19 @@ app.get("/api/events", async (req, res) => {
 
 app.post("/api/event/add", async (req, res) => {
   try {
-    const { name, date, category, description } = req.body;
-    if (!date) name = NULL;
-    if (!category) category = NULL;
-    if (!description) description = NULL;
+    let { name, date, category, description } = req.body;
+    if (!date) date = null;
+    if (!category) category = null;
+    if (!description) description = null;
     const newEvent = await db.query(
       "INSERT INTO events (name, date, category, description) VALUES ($1, $2, $3, $4) RETURNING *",
       [name, date, category, description]
     );
+    // DOES NOT WORK FOR SOME REASON: column "date" is of type date but expression is of type text
+    // const newEvent = await db.query(
+    //   "INSERT INTO events (name, date, category, description) VALUES ($1, NULLIF ($2, ''), NULLIF($3, ''), NULLIF($4,'')) RETURNING *",
+    //   [name, date, category, description]
+    // );
     res.json(newEvent.rows[0]);
   } catch (error) {
     console.error(error.message);
