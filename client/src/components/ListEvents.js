@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { EventRow } from "./EventRow";
 
 function ListEvents() {
   //  store all events data
@@ -20,6 +21,8 @@ function ListEvents() {
     getEvents();
   }, [setEvents]);
 
+  console.log(events);
+
   return (
     <div className="main-table">
       <table>
@@ -35,12 +38,15 @@ function ListEvents() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>test</td>
-          </tr>
-          <tr>
-            <td>test</td>
-          </tr>
+          {events.map((event) => (
+            <EventRow
+              key={event.event_id}
+              name={event.name}
+              date={event.date}
+              category={event.category}
+              description={event.description}
+            />
+          ))}
         </tbody>
       </table>
     </div>

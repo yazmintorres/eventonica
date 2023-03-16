@@ -16,12 +16,27 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// get all events
+// GET ALL EVENTS
 app.get("/api/events", async (req, res) => {
   try {
     // get from database
     const allEvents = await db.query("SELECT * FROM events");
     res.json(allEvents.rows);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+// ADD AN EVENT
+
+app.post("/api/event/add", async (req, res) => {
+  try {
+    const { name, date, category, description } = req.body;
+    const newEvent = await db.query(
+      "INSERT INTO events (name, date, category, description) VALUES ($1, $2, $3, $4) RETURNING *",
+      [name, date, category, description]
+    );
+    res.json(newEvent.rows[0]);
   } catch (error) {
     console.error(error.message);
   }
