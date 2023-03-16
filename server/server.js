@@ -50,6 +50,19 @@ app.post("/api/event/add", async (req, res) => {
   }
 });
 
+// DELETE AN EVENT
+app.delete("/api/event/:id", async (req, res) => {
+  const { id } = req.params;
+  const deleteEvent = await db.query("DELETE FROM events WHERE event_id = $1", [
+    id,
+  ]);
+  res.json("Todo was deleted!");
+  try {
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
 app.listen(PORT, () =>
   console.log(`Hola! Server running on Port http://localhost:${PORT}`)
 );
