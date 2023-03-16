@@ -133,3 +133,44 @@ tr:hover {
 .btn-row {
   font-size: 16px;
 }
+
+/* MODAL FORM COMPONENT */
+
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.modal-content {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 50vw;
+  min-height: 20vh;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: center;
+}
+
+.modal-header,
+.modal-footer {
+  padding: 10px;
+  margin: 5px 0;
+}
+
+.modal-header {
+  font-size: 20px;
+}
+
+.modal-body {
+  padding: 20px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
