@@ -7,11 +7,14 @@ const TopPanel = () => {
       <button className="btn btn-panel btn-add" onClick={() => setShow(true)}>
         Add Event
       </button>
-      <ModalForm
+      {show ? (
+        <ModalForm title={"Edit Event"} onClose={() => setShow(false)} />
+      ) : null}
+      {/* <ModalForm
         show={show}
         title={"Add Event"}
         onClose={() => setShow(false)}
-      />
+      /> */}
       <button className="btn btn-panel btn-fav">Filter Favorite</button>
     </div>
   );

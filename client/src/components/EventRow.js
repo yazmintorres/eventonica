@@ -17,11 +17,9 @@ const EventRow = (props) => {
         <button className="btn btn-row btn-edit" onClick={() => setShow(true)}>
           Edit
         </button>
-        <ModalForm
-          show={show}
-          title={"Edit Event"}
-          onClose={() => setShow(false)}
-        />
+        {show ? (
+          <ModalForm title={"Edit Event"} onClose={() => setShow(false)} />
+        ) : null}
       </td>
       <td>
         <button className="btn btn-row btn-delete">Delete</button>
