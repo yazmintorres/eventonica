@@ -21,15 +21,13 @@ function ListEvents() {
     getEvents();
   }, [setEvents]);
 
-  console.log(events);
-
   return (
     <div className="main-table">
       <table>
         <thead>
           <tr>
             <th className="col-hearts">hearts</th>
-            <th className="col-name">Name</th>
+            <th className="col-name">Event Name</th>
             <th className="col-date">Date</th>
             <th className="col-category">Category</th>
             <th className="col-desc">Description</th>
