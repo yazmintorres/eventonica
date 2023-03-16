@@ -1,7 +1,17 @@
+import { useState } from "react";
+import { ModalForm } from "./ModalForm";
 const TopPanel = () => {
+  const [show, setShow] = useState(false);
   return (
     <div className="top-panel">
-      <button className="btn btn-panel btn-add">Add Event</button>
+      <button className="btn btn-panel btn-add" onClick={() => setShow(true)}>
+        Add Event
+      </button>
+      <ModalForm
+        show={show}
+        title={"Add Event"}
+        onClose={() => setShow(false)}
+      />
       <button className="btn btn-panel btn-fav">Filter Favorite</button>
     </div>
   );
