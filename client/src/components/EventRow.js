@@ -3,6 +3,19 @@ import { ModalForm } from "./ModalForm";
 import Moment from "react-moment";
 
 const EventRow = (props) => {
+  // DELETE A REQUEST
+  const deleteEvent = async (id) => {
+    try {
+      const deleteTodo = await fetch(`http://localhost:8080/api/event/${id}`, {
+        method: "DELETE",
+      });
+      console.log(deleteTodo);
+      props.setEvents(props.events.filter((event) => event.event_id !== id));
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   const [show, setShow] = useState(false);
   return (
     <tr>
@@ -26,7 +39,12 @@ const EventRow = (props) => {
         ) : null}
       </td>
       <td>
-        <button className="btn btn-row btn-delete">Delete</button>
+        <button
+          className="btn btn-row btn-delete"
+          onClick={() => deleteEvent(props.id)}
+        >
+          Delete
+        </button>
       </td>
     </tr>
   );

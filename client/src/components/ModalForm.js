@@ -71,17 +71,6 @@ const ModalForm = (props) => {
                 onChange={handleChange("date")}
               />
             </div>
-            <div className="desc-form">
-              <label htmlFor="desc">Description:</label>
-              <textarea
-                rows="5"
-                cols="20"
-                name="desc"
-                id="desc"
-                value={event.desc}
-                onChange={handleChange("description")}
-              />
-            </div>
             <div className="category-form">
               <label htmlFor="category">Category:</label>
               <input
@@ -89,9 +78,21 @@ const ModalForm = (props) => {
                 name="category"
                 id="category"
                 value={event.category}
+                onChange={handleChange("category")}
+              />
+            </div>
+            <div className="desc-form">
+              <label htmlFor="desc">Description:</label>
+              <textarea
+                rows="5"
+                cols="20"
+                name="desc"
+                id="desc"
+                value={event.description}
                 onChange={handleChange("description")}
               />
             </div>
+
             <button>Submit</button>
           </form>
         </div>

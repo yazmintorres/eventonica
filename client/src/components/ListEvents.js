@@ -43,6 +43,9 @@ function ListEvents() {
               date={event.date}
               category={event.category}
               description={event.description}
+              id={event.event_id}
+              events={events}
+              setEvents={setEvents}
             />
           ))}
         </tbody>
