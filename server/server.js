@@ -81,6 +81,21 @@ app.put("/api/event/update/:id", async (req, res) => {
   }
 });
 
+//  UPDATE IS FAVORITED
+app.put("/api/favorite/event/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { isfavorited } = req.body;
+    const updateEvent = await db.query(
+      "UPDATE EVENTS SET isFavorited = $1 WHERE event_id = $2 RETURNING *",
+      [isfavorited, id]
+    );
+    res.json(updateEvent.rows[0]);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
 app.listen(PORT, () =>
   console.log(`Hola! Server running on Port http://localhost:${PORT}`)
 );
