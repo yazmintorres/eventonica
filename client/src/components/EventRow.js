@@ -54,7 +54,11 @@ const EventRow = ({
 
   return (
     <tr>
-      <td className="heart">&#10084;</td>
+      <td>
+        <button className="heart">
+          <span>&#10084;</span>
+        </button>
+      </td>
       <td>{name}</td>
       <td>{date ? <Moment format="MMM DD, YYYY">{date}</Moment> : "TBD"}</td>
       <td>{category}</td>
