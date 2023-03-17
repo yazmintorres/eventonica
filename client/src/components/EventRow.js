@@ -12,6 +12,7 @@ const EventRow = ({
   events,
 }) => {
   const [show, setShow] = useState(false);
+  const [showHeart, setShowHeart] = useState(false);
 
   // DELETE A REQUEST
   const deleteEvent = async (event_id) => {
@@ -52,10 +53,16 @@ const EventRow = ({
     }
   };
 
+  // STYLE HEART CLICKED
+
   return (
     <tr>
       <td>
-        <button className="heart">
+        <button
+          onClick={() => setShowHeart(!showHeart)}
+          style={showHeart ? { color: "palevioletred" } : null}
+          className="heart"
+        >
           <span>&#10084;</span>
         </button>
       </td>
