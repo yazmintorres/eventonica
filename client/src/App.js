@@ -6,16 +6,9 @@ import ListEvents from "./components/ListEvents";
 function App() {
   //  this holds all events in the DB
   const [events, setEvents] = useState([]);
+  const [filter, setFilter] = useState(false);
 
-  // this is for the user to create a new event
-  // const [newEvent, setNewEvent] = useState({
-  //   name: "",
-  //   date: "",
-  //   category: "",
-  //   description: "",
-  // });
-
-  // useEffect(() => console.log(newEvent), [newEvent]);
+  // if filter true, filter for favorite
 
   // get all events
   const getEvents = async () => {

@@ -26,6 +26,7 @@ function ListEvents({ newEvent, events, setNewEvent, setEvents }) {
               category={event.category}
               description={event.description}
               event_id={event.event_id}
+              isFavorited={event.isfavorited}
               events={events}
               setEvents={setEvents}
             />

@@ -85,7 +85,7 @@ td {
 /* only border on the bottom of every row */
 tr {
   border-bottom: 1px solid #ddd;
-  height: 50px;
+  height: 55px;
 }
 
 tr:nth-child(even) {

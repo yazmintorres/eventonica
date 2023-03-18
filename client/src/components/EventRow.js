@@ -8,6 +8,7 @@ const EventRow = ({
   date,
   category,
   description,
+  isFavorited,
   setEvents,
   events,
 }) => {
@@ -24,6 +25,7 @@ const EventRow = ({
         }
       );
       console.log(deleteTodo);
+      // take a callback on delete and filter in ListEvent
       setEvents(events.filter((event) => event.event_id !== event_id));
     } catch (error) {
       console.error(error.message);
@@ -38,7 +40,7 @@ const EventRow = ({
     try {
       const body = newEvent;
       console.log(body);
-      const updateResponse = await fetch(
+      const updateEvent = await fetch(
         `http://localhost:8080/api/event/update/${event_id}`,
         {
           method: "PUT",
@@ -46,7 +48,7 @@ const EventRow = ({
           body: JSON.stringify(body),
         }
       );
-      console.log(updateResponse);
+      console.log(updateEvent);
       window.location = "/";
     } catch (error) {
       console.error(error.message);
@@ -54,12 +56,26 @@ const EventRow = ({
   };
 
   // STYLE HEART CLICKED
+  // UPDATE THE BACKEND ABOUT IF ROW IS FAVORITED OR NOT
+  const onHeartClick = async () => {
+    setShowHeart(!showHeart);
+    console.log(isFavorited);
+    try {
+      const body = { isfavorited: !showHeart };
+      console.log(body);
+      const updateFavorite = await fetch(
+        `http://localhost:8080/api/favorite/event/${event_id}`
+      );
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
 
   return (
     <tr>
       <td>
         <button
-          onClick={() => setShowHeart(!showHeart)}
+          onClick={onHeartClick}
           style={showHeart ? { color: "palevioletred" } : null}
           className="heart"
         >
